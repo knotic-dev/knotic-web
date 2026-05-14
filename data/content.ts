@@ -28,9 +28,9 @@ export const nav = [
 ];
 
 export const partners = [
-  { name: "rezoomex", icon: null },
-  { name: "Adya", icon: null },
-  { name: "trae", icon: null },
+  { name: "rezoomex", logo: "/images/partners/rezoomex_logo.png" },
+  { name: "Adya",     logo: "/images/partners/adya_ai.svg"     },
+  { name: "trae",     logo: "/images/partners/TRAE.jpg"     },
 ];
 
 export const services = {
