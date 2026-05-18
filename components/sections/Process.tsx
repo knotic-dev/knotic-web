@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { process } from "@/data/content";
 import SectionLabel from "@/components/ui/SectionLabel";
@@ -39,11 +39,37 @@ export default function Process() {
   const total = process.steps.length;
   const step = process.steps[active];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % total);
+    }, 5000); // Extended slightly to 5s to let the elegant transition breathe
+
+    return () => clearInterval(interval);
+  }, [total]);
+
   return (
     <section
       id="process"
       style={{ borderBottom: "1px solid var(--border-color)" }}
     >
+      {/* Sleek CSS Animations injected locally to keep setup self-contained */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes subtleScale {
+          0% { transform: scale(1.06); opacity: 0; filter: blur(4px); }
+          100% { transform: scale(1); opacity: 1; filter: blur(0); }
+        }
+        @keyframes elegantReveal {
+          0% { transform: translateY(24px); opacity: 0; }
+          100% { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes lineGrow {
+          0% { width: 0%; }
+          100% { width: 100%; }
+        }
+        .animate-image { animation: subtleScale 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-text { animation: elegantReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+      `}} />
+
       {/* ── Heading ── */}
       <div
         style={{
@@ -55,8 +81,8 @@ export default function Process() {
         <h2
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(28px, 4vw, 48px)",
-            fontWeight: 700,
+            fontSize: "clamp(24px, 4vw, 48px)",
+            fontWeight: 600,
             lineHeight: 1.1,
             letterSpacing: "-0.025em",
             color: "var(--text-primary)",
@@ -73,19 +99,21 @@ export default function Process() {
         {/* Left: image */}
         <div
           className="process-image-panel"
-          style={{ position: "relative", overflow: "hidden" }}
+          style={{ position: "relative", overflow: "hidden", backgroundColor: "#000" }}
         >
-          <Image
-            key={step.image}
-            src={step.image}
-            alt={step.title}
-            fill
-            style={{
-              objectFit: "cover",
-              objectPosition: "center",
-              transition: "opacity 0.4s ease",
-            }}
-          />
+          {/* Key triggers remounting, driving the slick pan/zoom look */}
+          <div key={`img-${active}`} className="animate-image" style={{ width: "100%", height: "100%", position: "relative" }}>
+            <Image
+              src={step.image}
+              alt={step.title}
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+              priority
+            />
+          </div>
 
           <PixelGridOverlay />
 
@@ -103,6 +131,8 @@ export default function Process() {
 
           {/* Ghost step number */}
           <span
+            key={`num-${active}`}
+            className="animate-text"
             style={{
               position: "absolute",
               bottom: "24px",
@@ -110,11 +140,12 @@ export default function Process() {
               fontFamily: "var(--font-display)",
               fontSize: "clamp(64px, 8vw, 96px)",
               fontWeight: 400,
-              color: "rgba(139,92,246,0.2)",
+              color: "rgba(139,92,246,0.15)",
               lineHeight: 1,
               zIndex: 3,
               userSelect: "none",
               pointerEvents: "none",
+              animationDelay: "0.1s"
             }}
           >
             {String(active + 1).padStart(2, "0")}
@@ -130,6 +161,7 @@ export default function Process() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
+            overflow: "hidden"
           }}
         >
           <div
@@ -151,81 +183,84 @@ export default function Process() {
             </span>
           </div>
 
+          {/* Content Wrapper with orchestrated delays */}
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+            key={`content-${active}`}
+            style={{ display: "flex", flexDirection: "column", gap: "14px" }}
           >
             <h3
+              className="animate-text"
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(22px, 2.5vw, 30px)",
                 fontWeight: 700,
                 color: "var(--text-primary)",
                 lineHeight: 1.2,
+                animationDelay: "0.05s",
+                opacity: 0 // Prevents flash before animation kicks in
               }}
             >
               {step.title}
             </h3>
             <p
+              className="animate-text"
               style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 color: "var(--text-secondary)",
                 lineHeight: 1.8,
-                maxWidth: "300px",
+                maxWidth: "340px",
+                animationDelay: "0.15s",
+                opacity: 0
               }}
             >
               {step.description}
             </p>
           </div>
 
-          {/* Dots + nav */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          {/* Modern Minimalistic Loading Timelines */}
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             {process.steps.map((_, i) => (
-              <button
+              <div
                 key={i}
                 onClick={() => setActive(i)}
                 style={{
-                  height: "1px",
-                  width: i === active ? "36px" : "16px",
-                  backgroundColor:
-                    i === active
-                      ? "var(--accent)"
-                      : "var(--border-color)",
-                  border: "none",
+                  height: "2px",
+                  flex: 1,
+                  maxWidth: "40px",
+                  backgroundColor: "rgba(255,255,255,0.07)",
                   cursor: "pointer",
-                  transition: "all 0.3s ease",
-                  padding: 0,
+                  position: "relative",
+                  overflow: "hidden"
                 }}
-              />
+              >
+                {i === active && (
+                  <div 
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      top: 0,
+                      height: "100%",
+                      backgroundColor: "var(--accent, var(--accent-purple, #8b5cf6))",
+                      animation: "lineGrow 5s linear forwards"
+                    }}
+                  />
+                )}
+                {i < active && (
+                  <div 
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      top: 0,
+                      height: "100%",
+                      width: "100%",
+                      backgroundColor: "var(--text-secondary)",
+                      opacity: 0.4
+                    }}
+                  />
+                )}
+              </div>
             ))}
-            <div style={{ marginLeft: "auto", display: "flex", gap: "8px" }}>
-              {(["← Prev", "Next →"] as const).map((label, i) => (
-                <button
-                  key={label}
-                  onClick={() =>
-                    setActive((p) =>
-                      i === 0 ? Math.max(0, p - 1) : Math.min(total - 1, p + 1),
-                    )
-                  }
-                  disabled={i === 0 ? active === 0 : active === total - 1}
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "13px",
-                    color: "var(--text-secondary)",
-                    border: "1px solid var(--border-color)",
-                    backgroundColor: "transparent",
-                    padding: "4px 10px",
-                    cursor: "pointer",
-                    opacity: (i === 0 ? active === 0 : active === total - 1)
-                      ? 0.2
-                      : 1,
-                    transition: "all 0.2s ease",
-                  }}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
           </div>
         </div>
       </div>

@@ -141,14 +141,6 @@ export const testimonials = [
     avatar: "/avatars/2.jpg",
   },
   {
-    id: 3,
-    quote:
-      "We went from spreadsheets to a fully automated pipeline in under three weeks. Incredible team, incredible results.",
-    name: "Luca Ferretti",
-    title: "Operations Lead at Stratos",
-    avatar: "/avatars/3.jpg",
-  },
-  {
     id: 4,
     quote:
       "The integration was flawless. Our tools finally talk to each other, and our team can focus on actual work.",
