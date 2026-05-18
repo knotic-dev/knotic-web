@@ -8,6 +8,7 @@ import FAQ from "@/components/sections/FAQ";
 import CTA from "@/components/sections/CTA";
 import Services from "@/components/sections/Services";
 import Features from "@/components/sections/Features";
+import Events from "@/components/sections/Events";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Partners />
+      <Events />
       <Services />
       <Features />
       <Process />

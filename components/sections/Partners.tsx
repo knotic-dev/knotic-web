@@ -1,6 +1,8 @@
 "use client";
+
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { partners } from "@/data/content";
 import type { CSSProperties } from "react";
 
@@ -10,20 +12,32 @@ type PartnerItem = {
   type: "partner";
   name: string;
   logo?: string;
-  /** Wider slot for horizontal wordmarks (e.g. Google for Developers) */
   wide?: boolean;
 };
 
 type MarqueeItem = PartnerItem;
 
 const partnerSet: MarqueeItem[] = [
-  ...partners.map<PartnerItem>((partner) => ({ type: "partner", ...partner })),
+  ...partners.map<PartnerItem>((partner) => ({
+    type: "partner",
+    ...partner,
+  })),
 ];
 
 export default function Partners() {
   const { resolvedTheme } = useTheme();
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Prevent SSR/client mismatch
   const blendMode: CSSProperties["mixBlendMode"] =
-    resolvedTheme === "dark" ? "screen" : "multiply";
+    mounted && resolvedTheme === "dark"
+      ? "screen"
+      : "multiply";
 
   const items = Array.from({ length: REPEATS }, () => partnerSet).flat();
 
@@ -70,6 +84,7 @@ export default function Partners() {
             pointerEvents: "none",
           }}
         />
+
         {/* Right fade */}
         <div
           style={{
@@ -85,7 +100,6 @@ export default function Partners() {
           }}
         />
 
-        {/* Scrolling track */}
         <div
           className="marquee-track"
           style={{
@@ -109,15 +123,11 @@ export default function Partners() {
               }}
             >
               {p.logo ? (
-                /**
-                 * Fixed-size wrapper with `position: relative` + Image fill.
-                 * This forces ALL logos into the exact same 120×28 box regardless
-                 * of their natural dimensions. `objectFit: contain` + `objectPosition: center`
-                 * keeps the logo fully visible and vertically centred within that box.
-                 */
                 <div
                   className={
-                    p.wide ? "partner-logo-wrap partner-logo-wrap--wide" : "partner-logo-wrap"
+                    p.wide
+                      ? "partner-logo-wrap partner-logo-wrap--wide"
+                      : "partner-logo-wrap"
                   }
                 >
                   <Image
@@ -127,21 +137,20 @@ export default function Partners() {
                     sizes={p.wide ? "180px" : "140px"}
                     style={{
                       objectFit: "contain",
-                      objectPosition: "center center",
+                      objectPosition: "center",
                       filter: "grayscale(100%)",
                       opacity: 0.75,
                       mixBlendMode: blendMode,
-                      transition: "opacity 0.2s ease, filter 0.2s ease",
+                      transition:
+                        "opacity 0.2s ease, filter 0.2s ease",
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.opacity = "1";
-                      (e.currentTarget as HTMLImageElement).style.filter =
-                        "grayscale(0%)";
+                      e.currentTarget.style.opacity = "1";
+                      e.currentTarget.style.filter = "grayscale(0%)";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.opacity =
-                        "0.75";
-                      (e.currentTarget as HTMLImageElement).style.filter =
+                      e.currentTarget.style.opacity = "0.75";
+                      e.currentTarget.style.filter =
                         "grayscale(100%)";
                     }}
                   />
@@ -169,9 +178,22 @@ export default function Partners() {
       <style>{`
         @keyframes marquee {
           from { transform: translateX(0); }
-          to   { transform: translateX(-${100 / REPEATS}%); }
+          to { transform: translateX(-${100 / REPEATS}%); }
         }
-        .marquee-track:hover { animation-play-state: paused; }
+
+        .marquee-track:hover {
+          animation-play-state: paused;
+        }
+
+        .partner-logo-wrap {
+          position: relative;
+          width: 140px;
+          height: 28px;
+        }
+
+        .partner-logo-wrap--wide {
+          width: 180px;
+        }
       `}</style>
     </section>
   );

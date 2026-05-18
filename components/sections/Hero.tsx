@@ -50,7 +50,6 @@ export default function Hero() {
               className="hero-launch-cta"
             >
               <span>Launch Your Program</span>
-              <span aria-hidden="true">↗</span>
             </a>
 
             <a href="#services" className="hero-secondary-cta">
