@@ -1,5 +1,8 @@
 "use client";
+
+import { useState } from "react";
 import NeuralGlobe from "@/components/NeuralGlobe";
+import LaunchProgramModal from "./LaunchProgramModal"; // Adjust path to target your file structure
 
 const heroKickerItems = [
   "HACKATHONS & EVENTS",
@@ -9,6 +12,9 @@ const heroKickerItems = [
 ];
 
 export default function Hero() {
+  // Modal visibility state configuration
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section id="home" className="hero-grid">
       <div
@@ -41,13 +47,18 @@ export default function Hero() {
           </h1>
 
           <p className="hero-subheadline">
-          Knotic designs hyper-focused hackathons, nurtures elite developer communities, and connects rising talent with 1:1 mentorship from global tech leaders to build, launch, and scale production-ready AI systems for modern enterprises.
+            Knotic designs hyper-focused hackathons, nurtures elite developer communities, and connects rising talent with 1:1 mentorship from global tech leaders to build, launch, and scale production-ready AI systems for modern enterprises.
           </p>
 
           <div className="hero-actions">
+            {/* Kept your exact <a> tag, classes, and structure so design/color remains flawless */}
             <a
               href="#contact"
               className="hero-launch-cta"
+              onClick={(e) => {
+                e.preventDefault(); // Blocks page scroll jump
+                setIsModalOpen(true); // Mounts your glassmorphism configuration wizard
+              }}
             >
               <span>Launch Your Program</span>
             </a>
@@ -72,6 +83,9 @@ export default function Hero() {
       >
         <NeuralGlobe />
       </div>
+
+      {/* Standalone Modal Core Injection */}
+      <LaunchProgramModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

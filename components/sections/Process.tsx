@@ -81,7 +81,7 @@ export default function Process() {
         <h2
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(24px, 4vw, 48px)",
+            fontSize: "clamp(20px, 4vw, 40px)",
             fontWeight: 600,
             lineHeight: 1.1,
             letterSpacing: "-0.025em",

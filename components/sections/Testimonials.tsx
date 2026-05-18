@@ -47,7 +47,7 @@ export default function Testimonials() {
           className="animate-quote"
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(24px, 3.5vw, 40px)",
+            fontSize: "clamp(24px, 3.5vw, 35px)",
             fontWeight: 700,
             lineHeight: 1.25,
             letterSpacing: "-0.01em",

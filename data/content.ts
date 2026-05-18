@@ -217,5 +217,5 @@ export const faq = {
 export const cta = {
   heading: "Ready to build\nsmarter systems?",
   subheading: "Let's create workflows that think, adapt, and scale with you.",
-  buttonLabel: "Free Demo",
+  buttonLabel: "Book a consultation",
 };
