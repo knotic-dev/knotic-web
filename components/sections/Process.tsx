@@ -26,7 +26,7 @@ function PixelGridOverlay() {
           height="7"
           patternUnits="userSpaceOnUse"
         >
-          <rect x="0" y="0" width="6" height="6" fill="rgba(0,0,0,0.07)" />
+          <rect x="0" y="0" width="6" height="6" fill="rgba(59,130,246,0.06)" />
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#pixel-grid-process)" />
@@ -56,9 +56,9 @@ export default function Process() {
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(28px, 4vw, 48px)",
-            fontWeight: 400,
+            fontWeight: 700,
             lineHeight: 1.1,
-            letterSpacing: "-0.02em",
+            letterSpacing: "-0.025em",
             color: "var(--text-primary)",
             maxWidth: "700px",
             margin: "0 auto",
@@ -110,7 +110,7 @@ export default function Process() {
               fontFamily: "var(--font-display)",
               fontSize: "clamp(64px, 8vw, 96px)",
               fontWeight: 400,
-              color: "rgba(255,255,255,0.24)",
+              color: "rgba(139,92,246,0.2)",
               lineHeight: 1,
               zIndex: 3,
               userSelect: "none",
@@ -142,9 +142,9 @@ export default function Process() {
             <SectionLabel>{process.sectionLabel}</SectionLabel>
             <span
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "11px",
-                color: "var(--text-muted)",
+                fontFamily: "var(--font-sans)",
+                fontSize: "13px",
+                color: "var(--text-faint)",
               }}
             >
               {active + 1}/{total}
@@ -158,7 +158,7 @@ export default function Process() {
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(22px, 2.5vw, 30px)",
-                fontWeight: 400,
+                fontWeight: 700,
                 color: "var(--text-primary)",
                 lineHeight: 1.2,
               }}
@@ -167,9 +167,9 @@ export default function Process() {
             </h3>
             <p
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "11px",
-                color: "var(--text-muted)",
+                fontFamily: "var(--font-sans)",
+                fontSize: "14px",
+                color: "var(--text-secondary)",
                 lineHeight: 1.8,
                 maxWidth: "300px",
               }}
@@ -189,7 +189,7 @@ export default function Process() {
                   width: i === active ? "36px" : "16px",
                   backgroundColor:
                     i === active
-                      ? "var(--text-primary)"
+                      ? "var(--accent)"
                       : "var(--border-color)",
                   border: "none",
                   cursor: "pointer",
@@ -209,9 +209,9 @@ export default function Process() {
                   }
                   disabled={i === 0 ? active === 0 : active === total - 1}
                   style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "10px",
-                    color: "var(--text-muted)",
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "13px",
+                    color: "var(--text-secondary)",
                     border: "1px solid var(--border-color)",
                     backgroundColor: "transparent",
                     padding: "4px 10px",

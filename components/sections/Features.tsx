@@ -14,24 +14,31 @@ export default function Features() {
             display: "flex",
             flexDirection: "column",
             gap: "10px",
-            transition: "background-color 0.2s ease",
+            transition: "background-color 0.2s ease, box-shadow 0.2s ease",
           }}
-          onMouseEnter={e => (e.currentTarget.style.backgroundColor = "var(--bg-card)")}
-          onMouseLeave={e => (e.currentTarget.style.backgroundColor = "transparent")}
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = "var(--bg-card)";
+            e.currentTarget.style.boxShadow = "var(--card-shadow)";
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = "transparent";
+            e.currentTarget.style.boxShadow = "none";
+          }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ fontSize: "13px", color: "var(--text-primary)" }}>{f.icon}</span>
+            <span style={{ fontSize: "13px", color: "var(--accent-purple)" }}>{f.icon}</span>
             <span style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "11px",
+              fontFamily: "var(--font-sans)",
+              fontSize: "13px",
+              fontWeight: 600,
               color: "var(--text-primary)",
-              letterSpacing: "0.04em",
+              letterSpacing: "0.01em",
             }}>{f.title}</span>
           </div>
           <p style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "10px",
-            color: "var(--text-muted)",
+            fontFamily: "var(--font-sans)",
+            fontSize: "13px",
+            color: "var(--text-secondary)",
             lineHeight: 1.7,
           }}>{f.description}</p>
         </div>

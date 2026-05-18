@@ -1,7 +1,12 @@
 "use client";
-import Image from "next/image";
-import { site } from "@/data/content";
-import Button from "@/components/ui/Button";
+import NeuralGlobe from "@/components/NeuralGlobe";
+
+const heroKickerItems = [
+  "HACKATHONS & EVENTS",
+  "AI SCALING & DEVELOPMENT",
+  "MENTORSHIP & NETWORKING",
+  "ENTERPRISE & SOLUTIONS",
+];
 
 export default function Hero() {
   return (
@@ -17,72 +22,56 @@ export default function Hero() {
           paddingTop: "52px",
         }}
       >
-        <div style={{ flex: 1 }} />
+        <div className="hero-copy">
+          <div className="hero-kicker-wrap" aria-label="Knotic focus areas">
+            <span className="hero-kicker-cycle" aria-hidden="true">
+              {heroKickerItems.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </span>
+            <span className="sr-only">
+              HACKATHONS, AI SCALING, MENTORSHIP, ENTERPRISE
+            </span>
+          </div>
 
-        <h1
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(52px, 6vw, 80px)",
-            fontWeight: 400,
-            lineHeight: 1.05,
-            letterSpacing: "-0.02em",
-            color: "var(--text-primary)",
-          }}
-        >
-          {site.tagline}
-        </h1>
+          <p className="hero-preheading">THE ARCHITECTURE FOR TECH MOMENTUM</p>
 
-        <div style={{ flex: 1 }} />
+          <h1 className="hero-headline">
+            Build the Future Faster.
+          </h1>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-              color: "var(--text-muted)",
-              lineHeight: 1.8,
-              maxWidth: "300px",
-            }}
-          >
-            {site.description}
+          <p className="hero-subheadline">
+          Knotic designs hyper-focused hackathons, nurtures elite developer communities, and connects rising talent with 1:1 mentorship from global tech leaders to build, launch, and scale production-ready AI systems for modern enterprises.
           </p>
-          <div>
-            <Button href="#services">Free Demo</Button>
+
+          <div className="hero-actions">
+            <a
+              href="#contact"
+              className="hero-launch-cta"
+            >
+              <span>Launch Your Program</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <a href="#services" className="hero-secondary-cta">
+              <span>Explore Ecosystem</span>
+              <span aria-hidden="true" className="hero-secondary-arrow">
+                ↓
+              </span>
+            </a>
           </div>
         </div>
       </div>
 
-      {/* ── Right panel: image ── */}
       <div
         className="hero-image-panel"
         style={{
           position: "relative",
           overflow: "hidden",
           minHeight: "100vh",
-          backgroundColor: "#000",
         }}
       >
-        <Image
-          src="/images/hero.jpg"
-          alt={`${site.name} — ${site.tagline}`}
-          fill
-          priority
-          style={{
-            objectFit: "cover",
-            objectPosition: "center 20%",
-            opacity: 0.92,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to bottom, transparent 75%, #000 100%)",
-            pointerEvents: "none",
-            zIndex: 2,
-          }}
-        />
+        <NeuralGlobe />
       </div>
     </section>
   );

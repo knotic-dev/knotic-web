@@ -1,85 +1,166 @@
-"use client";                              // ← add this, needed for useTheme
+"use client";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { partners } from "@/data/content";
+import type { CSSProperties } from "react";
 
 const REPEATS = 6;
 
+type PartnerItem = {
+  type: "partner";
+  name: string;
+  logo?: string;
+  /** Wider slot for horizontal wordmarks (e.g. Google for Developers) */
+  wide?: boolean;
+};
+
+type MarqueeItem = PartnerItem;
+
+const partnerSet: MarqueeItem[] = [
+  ...partners.map<PartnerItem>((partner) => ({ type: "partner", ...partner })),
+];
+
 export default function Partners() {
   const { resolvedTheme } = useTheme();
-  const blendMode = resolvedTheme === "dark" ? "screen" : "multiply";
+  const blendMode: CSSProperties["mixBlendMode"] =
+    resolvedTheme === "dark" ? "screen" : "multiply";
 
-  const items = Array.from({ length: REPEATS }, () => partners).flat();
+  const items = Array.from({ length: REPEATS }, () => partnerSet).flat();
 
   return (
-    <section style={{ borderBottom: "1px solid var(--border-color)", padding: "28px 0" }}>
-      <p style={{
-        fontFamily: "var(--font-mono)",
-        fontSize: "9px",
-        letterSpacing: "0.2em",
-        textTransform: "uppercase",
-        color: "var(--text-faint)",
-        textAlign: "center",
-        marginBottom: "20px",
-      }}>
+    <section
+      style={{
+        borderBottom: "1px solid var(--border-color)",
+        padding: "28px 0",
+      }}
+    >
+      <p
+        style={{
+          fontFamily: "var(--font-sans)",
+          fontSize: "11px",
+          letterSpacing: "0.15em",
+          textTransform: "uppercase",
+          color: "var(--text-faint)",
+          textAlign: "center",
+          marginBottom: "20px",
+        }}
+      >
         Our Trusted Partners
       </p>
 
-      <div style={{ maxWidth: "600px", margin: "0 auto", overflow: "hidden", position: "relative" }}>
+      <div
+        style={{
+          maxWidth: "900px",
+          margin: "0 auto",
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
         {/* Left fade */}
-        <div style={{
-          position: "absolute", left: 0, top: 0, bottom: 0, width: "80px",
-          background: "linear-gradient(to right, var(--bg-primary) 0%, transparent 100%)",
-          zIndex: 2, pointerEvents: "none",
-        }} />
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            bottom: 0,
+            width: "44px",
+            background:
+              "linear-gradient(to right, var(--bg-primary) 0%, transparent 100%)",
+            zIndex: 2,
+            pointerEvents: "none",
+          }}
+        />
         {/* Right fade */}
-        <div style={{
-          position: "absolute", right: 0, top: 0, bottom: 0, width: "80px",
-          background: "linear-gradient(to left, var(--bg-primary) 0%, transparent 100%)",
-          zIndex: 2, pointerEvents: "none",
-        }} />
+        <div
+          style={{
+            position: "absolute",
+            right: 0,
+            top: 0,
+            bottom: 0,
+            width: "44px",
+            background:
+              "linear-gradient(to left, var(--bg-primary) 0%, transparent 100%)",
+            zIndex: 2,
+            pointerEvents: "none",
+          }}
+        />
 
         {/* Scrolling track */}
         <div
           className="marquee-track"
-          style={{ display: "flex", alignItems: "center", width: "max-content", animation: "marquee 18s linear infinite" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "max-content",
+            animation: "marquee 18s linear infinite",
+          }}
         >
           {items.map((p, i) => (
             <div
               key={i}
               style={{
-                padding: "0 40px",
+                padding: "0 32px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "160px",      // ← fixed slot, keeps all logos same space
-                height: "40px",
+                width: "200px",
+                height: "60px",
                 flexShrink: 0,
               }}
             >
-              <Image
-                src={p.logo}
-                alt={p.name}
-                height={28}
-                width={120}
-                style={{
-                  objectFit: "contain",
-                  maxHeight: "28px",
-                  width: "auto",
-                  filter: "grayscale(100%)",
-                  opacity: 0.6,
-                  mixBlendMode: blendMode as any,   // ← kills black bg on dark, white bg on light
-                  transition: "opacity 0.2s ease, filter 0.2s ease",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLImageElement).style.opacity = "1";
-                  (e.currentTarget as HTMLImageElement).style.filter = "grayscale(0%)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLImageElement).style.opacity = "0.6";
-                  (e.currentTarget as HTMLImageElement).style.filter = "grayscale(100%)";
-                }}
-              />
+              {p.logo ? (
+                /**
+                 * Fixed-size wrapper with `position: relative` + Image fill.
+                 * This forces ALL logos into the exact same 120×28 box regardless
+                 * of their natural dimensions. `objectFit: contain` + `objectPosition: center`
+                 * keeps the logo fully visible and vertically centred within that box.
+                 */
+                <div
+                  className={
+                    p.wide ? "partner-logo-wrap partner-logo-wrap--wide" : "partner-logo-wrap"
+                  }
+                >
+                  <Image
+                    src={p.logo}
+                    alt={p.name}
+                    fill
+                    sizes={p.wide ? "180px" : "140px"}
+                    style={{
+                      objectFit: "contain",
+                      objectPosition: "center center",
+                      filter: "grayscale(100%)",
+                      opacity: 0.75,
+                      mixBlendMode: blendMode,
+                      transition: "opacity 0.2s ease, filter 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLImageElement).style.opacity = "1";
+                      (e.currentTarget as HTMLImageElement).style.filter =
+                        "grayscale(0%)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLImageElement).style.opacity =
+                        "0.75";
+                      (e.currentTarget as HTMLImageElement).style.filter =
+                        "grayscale(100%)";
+                    }}
+                  />
+                </div>
+              ) : (
+                <span
+                  style={{
+                    color: "var(--text-secondary)",
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "14px",
+                    fontWeight: 700,
+                    letterSpacing: "0.01em",
+                    opacity: 0.72,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {p.name}
+                </span>
+              )}
             </div>
           ))}
         </div>

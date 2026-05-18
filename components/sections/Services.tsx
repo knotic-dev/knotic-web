@@ -7,11 +7,12 @@ function ServiceImageCard({ src, alt }: { src: string; alt: string }) {
   return (
     <div
       style={{
-        borderRadius: "6px",
+        borderRadius: "10px",
         overflow: "hidden",
         width: "100%",
         position: "relative",
         height: "200px",
+        boxShadow: "var(--card-shadow)",
       }}
     >
       <Image
@@ -65,7 +66,7 @@ function ServiceCard({
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "18px",
-            fontWeight: 400,
+            fontWeight: 700,
             color: "var(--text-primary)",
             marginBottom: "6px",
             lineHeight: 1.2,
@@ -75,9 +76,9 @@ function ServiceCard({
         </h3>
         <p
           style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "11px",
-            color: "var(--text-muted)",
+            fontFamily: "var(--font-sans)",
+            fontSize: "14px",
+            color: "var(--text-secondary)",
             lineHeight: 1.7,
           }}
         >
@@ -120,7 +121,7 @@ export default function Services() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 400,
+              fontWeight: 700,
               lineHeight: 1.1,
               letterSpacing: "-0.02em",
               color: "var(--text-primary)",
@@ -130,9 +131,9 @@ export default function Services() {
           </h2>
           <p
             style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-              color: "var(--text-muted)",
+              fontFamily: "var(--font-sans)",
+              fontSize: "14px",
+              color: "var(--text-secondary)",
               lineHeight: 1.8,
               maxWidth: "280px",
             }}

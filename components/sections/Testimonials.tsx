@@ -24,7 +24,7 @@ export default function Testimonials() {
         style={{
           fontFamily: "var(--font-display)",
           fontSize: "clamp(24px, 3.5vw, 40px)",
-          fontWeight: 400,
+          fontWeight: 700,
           lineHeight: 1.25,
           letterSpacing: "-0.01em",
           color: "var(--text-primary)",
@@ -38,8 +38,8 @@ export default function Testimonials() {
 
       <p
         style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "11px",
+          fontFamily: "var(--font-sans)",
+          fontSize: "14px",
           color: "var(--text-primary)",
           marginBottom: "4px",
         }}
@@ -48,9 +48,9 @@ export default function Testimonials() {
       </p>
       <p
         style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "10px",
-          color: "var(--text-muted)",
+          fontFamily: "var(--font-sans)",
+          fontSize: "13px",
+          color: "var(--text-secondary)",
           marginBottom: "24px",
         }}
       >
@@ -76,7 +76,7 @@ export default function Testimonials() {
               borderRadius: "50%",
               border:
                 i === active
-                  ? "2px solid var(--text-primary)"
+                  ? "2px solid var(--accent-cyan)"
                   : "2px solid var(--border-color)",
               backgroundColor: "var(--bg-card)",
               cursor: "pointer",

@@ -37,9 +37,9 @@ export default function FAQ() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(28px, 3.5vw, 44px)",
-              fontWeight: 400,
+              fontWeight: 700,
               lineHeight: 1.15,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.025em",
               color: "var(--text-primary)",
               whiteSpace: "pre-line",
             }}
@@ -81,8 +81,8 @@ export default function FAQ() {
               >
                 <span
                   style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "11px",
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "14px",
                     color: "var(--text-primary)",
                     lineHeight: 1.5,
                   }}
@@ -91,7 +91,7 @@ export default function FAQ() {
                 </span>
                 <span
                   style={{
-                    color: "var(--text-muted)",
+                    color: "var(--slate)",
                     fontSize: "18px",
                     lineHeight: 1,
                     flexShrink: 0,
@@ -108,9 +108,9 @@ export default function FAQ() {
                 <div style={{ padding: "0 32px 18px" }}>
                   <p
                     style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "10px",
-                      color: "var(--text-muted)",
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "14px",
+                      color: "var(--text-secondary)",
                       lineHeight: 1.8,
                     }}
                   >

@@ -6,17 +6,11 @@ export const site = {
   tagline: "Hack. Build. Scale.",
   description:
     "Knotic helps organizations accelerate innovation through AI systems, hackathons, developer programs, and ecosystem-driven execution.",
-  email: "knotic@gmail.com",
-  phone: "+91 XXXX",
-  address: {
-    street: "Saket",
-    city: "New Delhi",
-    country: "India",
-  },
+  email: "contact.knotic@gmail.com",
   social: {
-    twitter: "#",
-    instagram: "#",
-    linkedin: "#",
+    instagram: "https://www.instagram.com/knotichq/?hl=en",
+    linkedin: "https://www.linkedin.com/company/knotic/",
+    whatsapp: "https://whatsapp.com/channel/0029VbCHQRm9Gv7PQoFrWD0w",
   },
 };
 
@@ -28,6 +22,11 @@ export const nav = [
 ];
 
 export const partners = [
+  {
+    name: "Google for Developers",
+    logo: "/images/partners/Google-Developers-01.svg",
+    wide: true,
+  },
   { name: "rezoomex", logo: "/images/partners/rezoomex_logo.png" },
   { name: "Adya",     logo: "/images/partners/adya_ai.svg"     },
   { name: "trae",     logo: "/images/partners/TRAE.jpg"     },

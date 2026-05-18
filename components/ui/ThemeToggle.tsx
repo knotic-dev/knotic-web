@@ -24,11 +24,11 @@ export default function ThemeToggle() {
         padding: "4px 10px",
         // border: "1px solid var(--border-color)",
         background: "transparent",
-        color: "var(--text-muted)",
+        color: "var(--text-secondary)",
         fontSize: "11px",
         cursor: "pointer",
         transition: "all 0.2s ease",
-        fontFamily: "var(--font-mono)",
+        fontFamily: "var(--font-sans)",
         letterSpacing: "0.06em",
         whiteSpace: "nowrap",
       }}

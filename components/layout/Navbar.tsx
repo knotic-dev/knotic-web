@@ -51,7 +51,7 @@ export default function Navbar() {
             justifyContent: "space-between",
             padding: "0 24px",
             backgroundColor: scrolled
-              ? "rgba(var(--bg-primary-rgb), 0.72)"
+              ? "rgba(var(--bg-nav-rgb), 0.85)"
               : "transparent",
             backdropFilter: scrolled ? "blur(16px)" : "none",
             WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
@@ -59,7 +59,7 @@ export default function Navbar() {
             border: scrolled
               ? "1px solid var(--border-color)"
               : "1px solid transparent",
-            boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.08)" : "none",
+            boxShadow: scrolled ? "var(--card-shadow)" : "none",
             transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
@@ -104,9 +104,9 @@ export default function Navbar() {
                 onClick={() => setActive(item.label)}
                 style={{
                   padding: "4px 12px",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
-                  letterSpacing: "0.07em",
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "13px",
+                  letterSpacing: "0.04em",
                   textDecoration: "none",
                   borderRadius: "999px",
                   backgroundColor:
@@ -116,7 +116,7 @@ export default function Navbar() {
                   color:
                     active === item.label
                       ? "var(--nav-active-text)"
-                      : "var(--text-muted)",
+                      : "var(--text-secondary)",
                   transition: "all 0.2s ease",
                 }}
               >
@@ -155,7 +155,7 @@ export default function Navbar() {
                   y1="2"
                   x2="14"
                   y2="14"
-                  stroke="var(--text-muted)"
+                  stroke="var(--slate)"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
@@ -164,7 +164,7 @@ export default function Navbar() {
                   y1="2"
                   x2="2"
                   y2="14"
-                  stroke="var(--text-muted)"
+                  stroke="var(--slate)"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
@@ -177,7 +177,7 @@ export default function Navbar() {
                   y1="4"
                   x2="14"
                   y2="4"
-                  stroke="var(--text-muted)"
+                  stroke="var(--slate)"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
@@ -186,7 +186,7 @@ export default function Navbar() {
                   y1="8"
                   x2="14"
                   y2="8"
-                  stroke="var(--text-muted)"
+                  stroke="var(--slate)"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
@@ -195,7 +195,7 @@ export default function Navbar() {
                   y1="12"
                   x2="14"
                   y2="12"
-                  stroke="var(--text-muted)"
+                  stroke="var(--slate)"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
@@ -223,7 +223,7 @@ export default function Navbar() {
             gap: "2px",
             backdropFilter: "blur(16px)",
             WebkitBackdropFilter: "blur(16px)",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.16)",
+            boxShadow: "var(--card-shadow)",
           }}
         >
           {nav.map((item) => (
@@ -236,9 +236,9 @@ export default function Navbar() {
               }}
               style={{
                 padding: "12px 16px",
-                fontFamily: "var(--font-mono)",
-                fontSize: "12px",
-                letterSpacing: "0.07em",
+                fontFamily: "var(--font-sans)",
+                fontSize: "14px",
+                letterSpacing: "0.04em",
                 textDecoration: "none",
                 borderRadius: "10px",
                 backgroundColor:
@@ -248,7 +248,7 @@ export default function Navbar() {
                 color:
                   active === item.label
                     ? "var(--nav-active-text)"
-                    : "var(--text-muted)",
+                    : "var(--text-secondary)",
                 transition: "all 0.2s ease",
               }}
             >

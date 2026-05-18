@@ -17,7 +17,7 @@ export default function CTA() {
         padding: "80px 32px",
         overflow: "hidden",
         borderBottom: "1px solid var(--border-color)",
-        backgroundColor: "#000",
+        backgroundColor: "#0f172a",
       }}
     >
       {/* ── Background image ── */}
@@ -28,18 +28,28 @@ export default function CTA() {
         priority
         style={{
           objectFit: "cover",
-          objectPosition: "center 30%",  /* show more of the lit city area */
-          opacity: 0.92,                  /* nearly full — let the dark photo speak */
+          objectPosition: "center 30%",
+          opacity: 0.75,
         }}
       />
 
-      {/* Thin fade strips at top & bottom only — fades to black not off-white */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, #000 0%, transparent 12%, transparent 82%, #000 100%)",
+            "linear-gradient(135deg, rgba(59,130,246,0.4) 0%, rgba(34,211,238,0.3) 100%)",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      />
+
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to bottom, #0f172a 0%, transparent 15%, transparent 80%, #0f172a 100%)",
           pointerEvents: "none",
           zIndex: 1,
         }}
@@ -60,20 +70,21 @@ export default function CTA() {
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(36px, 5.5vw, 64px)",
-            fontWeight: 400,
+            fontWeight: 700,
             lineHeight: 1.1,
-            letterSpacing: "-0.02em",
+            letterSpacing: "-0.025em",
             color: "#ffffff",
             whiteSpace: "pre-line",
+            textShadow: "0 2px 24px rgba(34,211,238,0.25)",
           }}
         >
           {cta.heading}
         </h2>
         <p
           style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "11px",
-            color: "rgba(255,255,255,0.55)",
+            fontFamily: "var(--font-sans)",
+            fontSize: "14px",
+            color: "rgba(248,250,252,0.85)",
             maxWidth: "340px",
             lineHeight: 1.8,
           }}
