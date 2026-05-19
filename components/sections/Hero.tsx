@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import NeuralGlobe from "@/components/NeuralGlobe";
+import NeuralGlobe from "@/components/ui/NeuralGlobe";
 import LaunchProgramModal from "./LaunchProgramModal"; // Adjust path to target your file structure
 
 const heroKickerItems = [
