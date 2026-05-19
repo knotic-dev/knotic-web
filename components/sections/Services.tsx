@@ -90,7 +90,7 @@ export default function Services() {
       />
 
       <div style={{ position: "relative", zIndex: 1 }}>
-        
+
         {/* SPLIT HEADER CONTAINER */}
         <div
           style={{
@@ -105,20 +105,22 @@ export default function Services() {
           }}
         >
           {/* Left Text Block */}
-          <div style={{ flex: "1 1 500px", maxWidth: "600px" }}>
-            <span
-              style={{
-                fontSize: "11px",
-                textTransform: "uppercase",
-                letterSpacing: "0.2em",
-                color: "#3B82F6",
-                fontWeight: "600",
-                display: "block",
-                marginBottom: "16px",
-              }}
-            >
-              All Services
-            </span>
+          <div style={{ flex: "1 1 min(100%, 500px)", maxWidth: "600px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px", flexWrap: "wrap" }}>
+              <span style={{ display: "inline-block", width: "4px", height: "18px", backgroundColor: "var(--accent-cyan, #00f0ff)", borderRadius: "99px" }} />
+              <span
+                style={{
+                  fontSize: "11px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.2em",
+                  color: "#A855F7",
+                  fontWeight: "600",
+                  display: "block",
+                }}
+              >
+                All Services
+              </span>
+            </div>
             <h2
               style={{
                 fontFamily: "var(--font-display)",
@@ -146,9 +148,9 @@ export default function Services() {
           </div>
 
           {/* DUAL-THEME PREMIUM TERMINAL */}
-          <div 
-            style={{ 
-              flex: "1 1 450px", 
+          <div
+            style={{
+              flex: "1 1 min(100%, 450px)",
               maxWidth: "540px",
               width: "100%",
               // Uses var(--border-color) tinted alphas so it shifts nicely
@@ -175,17 +177,17 @@ export default function Services() {
                 {hoveredIndex !== null ? `pillar_0${hoveredIndex + 1}.log` : "orchestrator.env"}
               </span>
             </div>
-            
+
             {/* Real-time responsive console stream */}
             <div style={{ display: "flex", flexDirection: "column", gap: "8px", minHeight: "110px", justifyContent: "center" }}>
               {getTerminalLogs().map((log, i) => {
                 const isSuccess = log.includes("Success") || log.includes("100%") || log.includes("reduced");
                 const isHeader = log.startsWith("> [");
-                
+
                 return (
-                  <div 
-                    key={i} 
-                    style={{ 
+                  <div
+                    key={i}
+                    style={{
                       // Uses clean semantic highlights, falling back to global dark/light secondary text variables
                       color: isSuccess ? "#10B981" : isHeader ? "#3B82F6" : "var(--text-secondary)",
                       fontWeight: isHeader ? "600" : "400",

@@ -58,9 +58,7 @@ export default function Features() {
     <section 
       className="features-grid" 
       style={{ 
-        display: "flex", 
         width: "100%",
-        alignItems: "stretch",
         position: "relative"
       }}
     >

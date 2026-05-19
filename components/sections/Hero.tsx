@@ -40,7 +40,10 @@ export default function Hero() {
             </span>
           </div>
 
-          <p className="hero-preheading">THE ARCHITECTURE FOR TECH MOMENTUM</p>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px", flexWrap: "wrap" }}>
+            <span style={{ display: "inline-block", width: "4px", height: "18px", backgroundColor: "var(--accent-cyan, #00f0ff)", borderRadius: "99px" }} />
+            <p className="hero-preheading" style={{ marginBottom: 0, color: "var(--accent-purple, #A855F7)" }}>THE ARCHITECTURE FOR TECH MOMENTUM</p>
+          </div>
 
           <h1 className="hero-headline">
             Build the Future Faster.

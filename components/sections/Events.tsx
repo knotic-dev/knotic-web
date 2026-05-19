@@ -16,7 +16,7 @@ export default function Events() {
       date: "13th June",
       link: "https://luma.com/6kh62ixm",
       stats: "Building with AI",
-      image: "/images/events/upcoming/trae.png", 
+      image: "/images/events/upcoming/trae.png",
     },
   ];
 
@@ -46,7 +46,7 @@ export default function Events() {
   ];
 
   const [hoveredIdx, setHoveredIdx] = useState<string | null>(null);
-  
+
   const [activeImgIndexes, setActiveImgIndexes] = useState<{ [key: number]: number }>({
     0: 0,
     1: 0,
@@ -97,7 +97,8 @@ export default function Events() {
         overflow: "hidden",
       }}
     >
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes radarPulse {
           0% { transform: scale(0.6); opacity: 1; }
           100% { transform: scale(2.2); opacity: 0; }
@@ -111,6 +112,11 @@ export default function Events() {
         }
         .upcoming-highlight-card:hover {
           box-shadow: 0 12px 30px -10px rgba(0, 240, 255, 0.25) !important;
+        }
+        .upcoming-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+          gap: 24px;
         }
         .past-interactive-row:hover {
           border-color: var(--text-secondary, rgba(0,0,0,0.15)) !important;
@@ -133,7 +139,7 @@ export default function Events() {
       `}} />
 
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        
+
         {/* SECTION HEADER */}
         <div style={{ marginBottom: "64px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
@@ -156,7 +162,7 @@ export default function Events() {
             <span style={{ flexGrow: 1, height: "1px", background: "linear-gradient(90deg, var(--border-color), transparent)" }} />
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))", gap: "24px" }}>
+          <div className="upcoming-grid">
             {upcomingEvents.map((event, idx) => {
               const key = `upcoming-${idx}`;
               const isHovered = hoveredIdx === key;
@@ -184,27 +190,28 @@ export default function Events() {
                 >
                   <div>
                     {/* Event Banner Container */}
-                    <div style={{ 
-                      width: "100%", 
-                      paddingBottom: "52%", 
-                      position: "relative", 
-                      borderRadius: "8px", 
-                      overflow: "hidden", 
+                    <div style={{
+                      width: "100%",
+                      paddingBottom: "52%",
+                      position: "relative",
+                      borderRadius: "8px",
+                      overflow: "hidden",
                       marginBottom: "20px",
                       backgroundColor: "rgba(0,0,0,0.2)",
                       border: "1px solid var(--border-color)"
                     }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img 
-                        src={event.image} 
-                        alt={event.title} 
-                        style={{ 
-                          position: "absolute", 
-                          inset: 0, 
-                          width: "100%", 
-                          height: "100%", 
-                          objectFit: "cover" 
-                        }} 
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        loading="lazy"
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover"
+                        }}
                       />
                     </div>
 
@@ -234,7 +241,7 @@ export default function Events() {
                   <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: "600", color: "var(--text-primary)", transition: "color 0.2s ease" }}>
                     <span style={{ borderBottom: "1px solid currentColor" }}>Register for Event</span>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ transform: isHovered ? "translate(3px, -3px)" : "none", transition: "transform 0.2s ease" }}>
-                      <path d="M3.5 10.5L10.5 3.5M10.5 3.5H5.25M10.5 3.5V8.75" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M3.5 10.5L10.5 3.5M10.5 3.5H5.25M10.5 3.5V8.75" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                 </a>
@@ -278,14 +285,14 @@ export default function Events() {
                 >
                   {/* Left Column: Media Presentation and Meta Core Info */}
                   <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                    
+
                     {/* Landscape Interactive Image Slider Component */}
-                    <div 
+                    <div
                       className="past-event-gallery-window"
                       style={{
                         position: "relative",
                         width: "100%",
-                        paddingBottom: "56.25%", 
+                        paddingBottom: "56.25%",
                         borderRadius: "10px",
                         overflow: "hidden",
                         backgroundColor: "rgba(0,0,0,0.2)",
@@ -293,7 +300,7 @@ export default function Events() {
                       }}
                     >
                       {/* Smooth Hardware-Accelerated Sliding Track Container */}
-                      <div 
+                      <div
                         style={{
                           position: "absolute",
                           inset: 0,
@@ -303,24 +310,25 @@ export default function Events() {
                         }}
                       >
                         {event.images.map((imgSrc, imgIdx) => (
-                          <div 
-                            key={imgIdx} 
-                            style={{ 
-                              minWidth: "100%", 
-                              height: "100%", 
-                              position: "relative" 
+                          <div
+                            key={imgIdx}
+                            style={{
+                              minWidth: "100%",
+                              height: "100%",
+                              position: "relative"
                             }}
                           >
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img 
-                              src={imgSrc} 
+                            <img
+                              src={imgSrc}
                               alt={`${event.title} scene ${imgIdx + 1}`}
-                              style={{ 
-                                width: "100%", 
-                                height: "100%", 
+                              loading="lazy"
+                              style={{
+                                width: "100%",
+                                height: "100%",
                                 objectFit: "cover",
                                 display: "block"
-                              }} 
+                              }}
                             />
                           </div>
                         ))}
@@ -379,7 +387,7 @@ export default function Events() {
                       </button>
 
                       {/* Inline Indicator Dots Matrix bar */}
-                      <div 
+                      <div
                         style={{
                           position: "absolute",
                           bottom: "12px",
@@ -391,7 +399,7 @@ export default function Events() {
                         }}
                       >
                         {event.images.map((_, dotIdx) => (
-                          <button 
+                          <button
                             key={dotIdx}
                             type="button"
                             onClick={(e) => {
@@ -449,14 +457,14 @@ export default function Events() {
                           transition: "border-color 0.2s ease"
                         }}
                       >
-                        <span 
+                        <span
                           className="metric-block-value"
-                          style={{ 
-                            fontFamily: "var(--font-display, sans-serif)", 
-                            fontSize: "32px", 
-                            fontWeight: 700, 
-                            color: "var(--text-primary)", 
-                            marginBottom: "4px" 
+                          style={{
+                            fontFamily: "var(--font-display, sans-serif)",
+                            fontSize: "32px",
+                            fontWeight: 700,
+                            color: "var(--text-primary)",
+                            marginBottom: "4px"
                           }}
                         >
                           {metric.value}
@@ -476,7 +484,8 @@ export default function Events() {
       </div>
 
       {/* Media Query Engine Viewport Remapping Rules */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @media (max-width: 968px) {
           .past-row {
             grid-template-columns: 1fr !important;
@@ -488,6 +497,9 @@ export default function Events() {
           }
           .gallery-nav-btn {
             opacity: 1 !important;
+          }
+          .upcoming-grid {
+            grid-template-columns: 1fr !important;
           }
         }
         @media (max-width: 640px) {

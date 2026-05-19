@@ -1260,8 +1260,11 @@ button {
   }
 
   /* Navbar */
-  .nav-links {
-    display: none; /* collapse on mobile — add a hamburger if needed */
+  .nav-desktop {
+    display: none !important;
+  }
+  .nav-hamburger {
+    display: flex !important;
   }
 }
 
