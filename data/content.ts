@@ -33,31 +33,31 @@ export const partners = [
 ];
 
 export const services = {
-  heading: "From idea to execution, we've got you.",
+  heading: "Three capabilities. One execution partner.",
   subheading:
-    "We run hackathons, build developer communities, and ship AI systems that solve real problems.",
+    "We engineer AI-powered products, run high-impact innovation programs, and build developer ecosystems that drive real growth.",
   cta: "All services",
   items: [
     {
       id: "Hackathon",
-      title: "Hackathon & Innovation Programs",
+      title: "Innovation Programs & Hackathons",
       description:
-        "Design and run high-impact hackathons, challenges, and developer ecosystems.",
-      image: "/images/Hackathon.jpg", // ← leading slash + folder
+        "Designing and executing large-scale hackathons, corporate innovation challenges, hiring hackathons, and AI-focused programs across universities, startups, and enterprises to accelerate innovation, talent discovery, and ecosystem engagement.",
+      image: "/images/Hackathon.jpg",
+    },
+    {
+      id: "AI Product Engineering",
+      title: "AI & Product Engineering",
+      description:
+        "Building scalable AI-powered products, SaaS platforms, LLM integrations, intelligent automation systems, and custom software solutions engineered for modern businesses and high-growth digital ecosystems.",
+      image: "/images/AI.jpg",
     },
     {
       id: "Developer Ecosystem",
-      title: "Developer Ecosystem & Media",
+      title: "Developer Ecosystem & Technical Media",
       description:
-        "Full-stack web platforms, backends, ERP systems, and SaaS MVPs - build for scale.",
+        "Enabling developer-first growth through technical creator partnerships, developer communities, technical storytelling, educational content, sponsorship activations, and ecosystem-driven media designed to amplify engagement and product adoption.",
       image: "/images/developer-ecosystem.jpg",
-    },
-    {
-      id: "AI Systems",
-      title: "AI Systems & Digital Platforms",
-      description:
-        "LLM apps, AI agents, and intelligent automation systems that reduce operational load.",
-      image: "/images/AI.jpg",
     },
   ],
 };

@@ -1,93 +1,105 @@
 "use client";
 
 import { useState } from "react";
+import { motion, type Variants } from "framer-motion";
 import NeuralGlobe from "@/components/ui/NeuralGlobe";
-import LaunchProgramModal from "./LaunchProgramModal"; // Adjust path to target your file structure
+import LaunchProgramModal from "./LaunchProgramModal";
 
-const heroKickerItems = [
-  "HACKATHONS & EVENTS",
-  "AI SCALING & DEVELOPMENT",
-  "MENTORSHIP & NETWORKING",
-  "ENTERPRISE & SOLUTIONS",
-];
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const container: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.11, delayChildren: 0.12 },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.78, ease: EASE },
+  },
+};
 
 export default function Hero() {
-  // Modal visibility state configuration
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <section id="home" className="hero-grid">
-      <div
-        className="hero-left"
-        style={{
-          borderRight: "1px solid var(--border-color)",
-          padding: "0 40px 40px 40px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          paddingTop: "52px",
-        }}
-      >
-        <div className="hero-copy">
-          <div className="hero-kicker-wrap" aria-label="Knotic focus areas">
-            <span className="hero-kicker-cycle" aria-hidden="true">
-              {heroKickerItems.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </span>
-            <span className="sr-only">
-              HACKATHONS, AI SCALING, MENTORSHIP, ENTERPRISE
-            </span>
-          </div>
+      {/* LEFT: Content Panel */}
+      <div className="hero-left">
+        <div className="hero-left-glow" aria-hidden="true" />
 
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px", flexWrap: "wrap" }}>
-            <span style={{ display: "inline-block", width: "4px", height: "18px", backgroundColor: "var(--accent-cyan, #00f0ff)", borderRadius: "99px" }} />
-            <p className="hero-preheading" style={{ marginBottom: 0, color: "var(--accent-purple, #A855F7)" }}>THE ARCHITECTURE FOR TECH MOMENTUM</p>
-          </div>
+        <motion.div
+          className="hero-copy"
+          variants={container}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Status badge */}
+          <motion.div variants={fadeUp} className="hero-status-badge">
+            <span className="hero-status-dot" />
+            <span>AI Systems&nbsp;&nbsp;·&nbsp;&nbsp;Hackathons&nbsp;&nbsp;·&nbsp;&nbsp;Developer Ecosystems</span>
+          </motion.div>
 
-          <h1 className="hero-headline">
-            Build the Future Faster.
-          </h1>
+          {/* Section label */}
+          <motion.div variants={fadeUp} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <span className="label-accent-bar" />
+            <p className="hero-preheading">THE ARCHITECTURE FOR TECH MOMENTUM</p>
+          </motion.div>
 
-          <p className="hero-subheadline">
-            Knotic designs hyper-focused hackathons, nurtures elite developer communities, and connects rising talent with 1:1 mentorship from global tech leaders to build, launch, and scale production-ready AI systems for modern enterprises.
-          </p>
+          {/* Headline */}
+          <motion.h1 variants={fadeUp} className="hero-headline">
+            Build the{" "}
+            <span className="hero-headline-gradient">Future</span>
+            {" "}Faster.
+          </motion.h1>
 
-          <div className="hero-actions">
-            {/* Kept your exact <a> tag, classes, and structure so design/color remains flawless */}
+          {/* Subheadline */}
+          <motion.p variants={fadeUp} className="hero-subheadline">
+            Knotic engineers AI-powered products, runs high-impact innovation
+            programs, and builds developer ecosystems that drive real growth for
+            startups and enterprises.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div variants={fadeUp} className="hero-actions">
             <a
               href="#contact"
               className="hero-launch-cta"
               onClick={(e) => {
-                e.preventDefault(); // Blocks page scroll jump
-                setIsModalOpen(true); // Mounts your glassmorphism configuration wizard
+                e.preventDefault();
+                setIsModalOpen(true);
               }}
             >
               <span>Launch Your Program</span>
+              <span className="hero-cta-arrow" aria-hidden="true">→</span>
             </a>
-
             <a href="#services" className="hero-secondary-cta">
-              <span>Explore Ecosystem</span>
-              <span aria-hidden="true" className="hero-secondary-arrow">
-                ↓
-              </span>
+              <span>Explore Services</span>
+              <span aria-hidden="true" className="hero-secondary-arrow">↓</span>
             </a>
-          </div>
-        </div>
+          </motion.div>
+
+          {/* Trust indicator */}
+          <motion.div variants={fadeUp} className="hero-trust">
+            <span className="hero-trust-dot" />
+            <span>Trusted by developers, startups &amp; innovation teams</span>
+          </motion.div>
+        </motion.div>
       </div>
 
+      {/* RIGHT: Globe Panel */}
       <div
         className="hero-image-panel"
-        style={{
-          position: "relative",
-          overflow: "hidden",
-          minHeight: "100vh",
-        }}
+        style={{ position: "relative", overflow: "hidden", minHeight: "100vh" }}
       >
+        <div className="hero-globe-glow" aria-hidden="true" />
         <NeuralGlobe />
       </div>
 
-      {/* Standalone Modal Core Injection */}
       <LaunchProgramModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );

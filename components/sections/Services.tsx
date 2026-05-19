@@ -19,31 +19,31 @@ export default function Services() {
     switch (hoveredIndex) {
       case 0:
         return [
-          "> [KNOTIC_ENG] Initializing hackathon engine...",
-          "> Configuring prize allocation matrix... Success.",
-          "> Deploying registration gateway tokens...",
-          "> Status: Pipeline live. Ready for portal launch."
+          "> [KNOTIC_ENG] Loading hackathon orchestration suite...",
+          "> Registering corporate challenges and hiring hackathon modules... Success.",
+          "> Configuring AI bootcamp tracks across universities and enterprises...",
+          "> Status: Innovation program live. Ready for participant onboarding."
         ];
       case 1:
         return [
-          "> [KNOTIC_DEV] Scaling developer core systems...",
-          "> Routing traffic through cloud architectures...",
-          "> Compiling SaaS MVP boilerplate packages...",
-          "> Status: System optimization threshold at 100%."
+          "> [KNOTIC_AI] Initializing AI product build pipeline...",
+          "> Scaffolding SaaS platform and LLM integration layers... Success.",
+          "> Linking intelligent automation systems to product architecture...",
+          "> Status: Scalable AI product environment online."
         ];
       case 2:
         return [
-          "> [KNOTIC_AI] Initializing agent cluster arrays...",
-          "> Connecting to core LLM operational pipelines...",
-          "> Executing automated task automation matrix...",
-          "> Status: Operational load successfully reduced by 42%."
+          "> [KNOTIC_DEV] Spinning up developer ecosystem core...",
+          "> Routing creator partnerships, sponsorships and community nodes...",
+          "> Compiling technical storytelling and educational content assets... Success.",
+          "> Status: Ecosystem engagement network operational."
         ];
       default:
         return [
-          "> [KNOTIC_SYS] Core engine sitting idle...",
-          "> Monitoring infrastructure telemetry hooks...",
-          "> Hover over services below to inspect clusters...",
-          "> Status: All localized platform networks operational."
+          "> [KNOTIC_SYS] 3 active service pillars detected.",
+          "> Pillar 01: Innovation Programs & Hackathons... Ready.",
+          "> Pillar 02: AI & Product Engineering... Ready.",
+          "> Pillar 03: Developer Ecosystem & Technical Media... Ready."
         ];
     }
   };
